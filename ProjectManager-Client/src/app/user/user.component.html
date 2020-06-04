@@ -1,0 +1,91 @@
+<div class="container">
+  <div class="card">
+    <div class="card-header">
+      <h4>Add User</h4>
+    </div>
+    <div class="card-body">
+      <div class="form-group row">
+        <label class="col-2 col-form-label" for="firstName">First Name</label>
+        <input id="firstName" class="col-2 form-control" type="text" placeholder="Enter First Name"
+          [(ngModel)]="userToAdd.firstName">
+      </div>
+
+      <div class="form-group row">
+        <label class="col-2 col-form-label" for="lastName">Last Name</label>
+        <input id="lastName" class="col-2 form-control" type="text" placeholder="Enter Last Name"
+          [(ngModel)]="userToAdd.lastName">
+      </div>
+
+      <div class="form-group row">
+        <label class="col-2 col-form-label" for="empID">Employee ID</label>
+        <input id="empID" class="col-2 form-control" type="text" placeholder="Enter Employee Id"
+          [(ngModel)]="userToAdd.employeeId">
+      </div>
+
+      <div class="row justify-content-start">
+        <div class="col-2"> <button class="btn btn-dark" (click)="addUser()">{{buttonName}}</button> </div>
+        <div class="col-2"><button class="btn btn-dark" (click)="resetUser()">Reset</button></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<div class="container">
+  <div class="card">
+    <div class="card-header">
+      <h4>View Project</h4>
+    </div>
+    <div class="card-body">
+      <div class="row">
+        <div class="col-4">
+          <input type="text" class="form-control" placeholder="Search" [(ngModel)]="searchText">
+        </div>
+        <div class="col-8">
+          <strong>Sort By:</strong>
+          <button class="btn btn-info ml-2" (click)="sortUser(1)">First Name
+            <span class="glyphicon" [ngClass]="{'glyphicon-arrow-up':isFirstNameAsc===true,
+            'glyphicon-arrow-down':isFirstNameAsc===false}"></span>
+          </button>
+          <button class="btn btn-info ml-2" (click)="sortUser(2)">Last Name
+            <span class="glyphicon" [ngClass]="{'glyphicon-arrow-up':isLastNameAsc===true,
+            'glyphicon-arrow-down':isLastNameAsc===false}"></span>
+          </button>
+          <button class="btn btn-info ml-2" (click)="sortUser(3)">Employee Id
+            <span class="glyphicon" [ngClass]="{'glyphicon-arrow-up':isEmpIdAsc===true,
+            'glyphicon-arrow-down':isEmpIdAsc===false}"></span>
+          </button>
+        </div>
+
+      </div>
+      <div class="container row mt-3"
+        *ngFor="let user of users|filteruser:{firstName:searchText,lastName:searchText,employeeId:searchText}">
+        <div class="col-4">
+          <ul class="list-group" style="width:100%">
+            <li class="list-group-item ">
+              First Name: {{user.firstName}}
+            </li>
+            <li class="list-group-item">
+              Last: Name: {{user.lastName}}
+            </li>
+            <li class="list-group-item">
+              Employee Id: {{user.employeeId}}
+            </li>
+          </ul>
+        </div>
+
+        <div class="view-buttons">
+          <div class="col-12 mt-2">
+            <button class="btn btn-primary" (click)="editUser(user)">Edit</button>
+          </div>
+          <div class="col-12 mt-2">
+            <button class="btn btn-danger" (click)="deleteUser(user)">Suspend</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+</div>
