@@ -5,34 +5,39 @@
         </div>
         <div class="card-body">
             <div class="form-group row">
-                <label class="col-2 col-form-label required" for="projectName">Project Name</label>
-                <input id="projectName" required class="col-2 form-control" type="text" placeholder="Enter Project Name"
-                    [(ngModel)]="projectToAdd.projectName">
+                <label class="col-sm-2 col-form-label" for="projectName">Project Name</label>
+                <div class="col-sm-3">
+                    <input id="projectName" class="form-control" type="text" placeholder="Enter Project Name"
+                        [(ngModel)]="projectToAdd.projectName">
+                </div>
+
             </div>
 
-            <div class="form-group row required">
-                <div class="col-2"></div>
+            <div class="form-group row">
+                <div class="col-sm-2"></div>
                 <div class="form-check">
                     <input type="checkbox" class="form-check-input" id="chkBoxStartEndDt"
                         [(ngModel)]="startEndDateEnable" (ngModelChange)="setStartEndDateChange($event)">
                     <label class="form-check-label" for="chkBoxStartEndDt"><b>Set Start and End Date</b></label>
                 </div>
 
-                <div class="col-2">
+                <div class="col-sm-2">
                     <input type="text" class="form-control" id="startDate" bsDatepicker [minDate]="minStartDate"
                         [(ngModel)]="projectToAdd.projectStartDate" (ngModelChange)="setMinEndDate($event)"
                         [disabled]="!startEndDateEnable"
                         [bsConfig]="{ dateInputFormat: 'MM-DD-YYYY',containerClass: 'theme-blue',showWeekNumbers:false }">
                 </div>
-                <div class="col-2">
+                <div class="col-sm-2">
                     <input type="text" class="form-control" id="endDate" bsDatepicker [minDate]="minEndDate"
                         [(ngModel)]="projectToAdd.projectEndDate" [disabled]="!startEndDateEnable"
                         [bsConfig]="{ dateInputFormat: 'MM-DD-YYYY',containerClass: 'theme-blue',showWeekNumbers:false }">
                 </div>
             </div>
 
-            <div class="form-group row required">
-                <label class="col-2 col-form-label" for="priority">Priority:</label>
+            <div class="form-group row">
+                <div class="col-sm-2">
+                    <label class="col-form-label" for="priority">Priority:</label>
+                </div>
                 <div id="priority" class="col-sm-4">
                     <ng5-slider [(value)]="projectToAdd.priority" [options]="{
                         floor: 0,
@@ -40,14 +45,18 @@
                       }"></ng5-slider>
                 </div>
             </div>
-            <div class="form-group row required">
-                <label class="col-2 col-form-label" for="user">Manager:</label>
-                <div class="col-2">
+            <div class="form-group row">
+                <div class="col-sm-2">
+                    <label class=" col-form-label" for="user">Manager:</label>
+                </div>
+
+                <div class="input-group col-sm-4">
                     <input type="text" class="form-control" id="user" [(ngModel)]="selectedUser" disabled>
+                    <div class="input-group-append">
+                        <button class="btn btn-dark" (click)="openModal(userModal)">Search</button>
+                    </div>
                 </div>
-                <div>
-                    <button class="btn btn-dark" (click)="openModal(userModal)">Search</button>
-                </div>
+
             </div>
             <div class="row justify-content-start">
                 <div class="col-2"> <button class="btn btn-dark" (click)="addProject()">{{buttonName}}</button> </div>
@@ -65,34 +74,36 @@
             <h4>View Project</h4>
         </div>
         <div class="card-body">
-            <div class="row">
-                <div class="col-4">
+            <div class="row col-sm-12">
+                <div class="col-sm-4">
                     <input type="text" class="form-control" placeholder="Search.." [(ngModel)]="searchText">
                 </div>
-                <div class="col-8">
-                    <strong>Sort By:</strong>
-                    <button class="btn btn-info ml-2" (click)="sortProject(1)">Start Date
-                        <span class="glyphicon" [ngClass]="{'glyphicon-arrow-up':isStartDateAsc===true,
-                      'glyphicon-arrow-down':isStartDateAsc===false}"></span>
-                    </button>
-                    <button class="btn btn-info ml-2" (click)="sortProject(2)">End Date
-                        <span class="glyphicon" [ngClass]="{'glyphicon-arrow-up':isEndDateAsc===true,
-                      'glyphicon-arrow-down':isEndDateAsc===false}"></span>
-                    </button>
-                    <button class="btn btn-info ml-2" (click)="sortProject(3)">Priority
-                        <span class="glyphicon" [ngClass]="{'glyphicon-arrow-up':isPriorityAsc===true,
-                      'glyphicon-arrow-down':isPriorityAsc===false}"></span>
-                    </button>
-                    <button class="btn btn-info ml-2" (click)="sortProject(4)">Completed
-                        <span class="glyphicon" [ngClass]="{'glyphicon-arrow-up':isCompletedAsc===true,
-                      'glyphicon-arrow-down':isCompletedAsc===false}"></span>
-                    </button>
+                <div class="col-sm-8 row">
+                    <div class="col-sm-2"><strong>Sort By:</strong></div>
+                    <div class="col-sm-10">
+                        <button class="btn btn-outline-primary btn-sm ml-2" (click)="sortProject(1)">Start Date
+                            <span class="glyphicon" [ngClass]="{'glyphicon-arrow-up':isStartDateAsc===true,
+                          'glyphicon-arrow-down':isStartDateAsc===false}"></span>
+                        </button>
+                        <button class="btn btn-outline-primary btn-sm ml-2" (click)="sortProject(2)">End Date
+                            <span class="glyphicon" [ngClass]="{'glyphicon-arrow-up':isEndDateAsc===true,
+                          'glyphicon-arrow-down':isEndDateAsc===false}"></span>
+                        </button>
+                        <button class="btn btn-outline-primary btn-sm ml-2" (click)="sortProject(3)">Priority
+                            <span class="glyphicon" [ngClass]="{'glyphicon-arrow-up':isPriorityAsc===true,
+                          'glyphicon-arrow-down':isPriorityAsc===false}"></span>
+                        </button>
+                        <button class="btn btn-outline-primary btn-sm ml-2" (click)="sortProject(4)">Completed
+                            <span class="glyphicon" [ngClass]="{'glyphicon-arrow-up':isCompletedAsc===true,
+                          'glyphicon-arrow-down':isCompletedAsc===false}"></span>
+                        </button>
+                    </div>
                 </div>
-
             </div>
+
             <div class="container row mt-3"
                 *ngFor="let project of projects|filteruser:{projectName:searchText,projectStartDate:searchText,projectEndDate:searchText}">
-                <div class="col-8">
+                <div class="col-sm-8">
                     <ul class="list-group" style="width:100%">
                         <li class="list-group-item ">
                             <div class="row">
@@ -127,23 +138,19 @@
                 </div>
 
                 <div class="view-buttons">
-                    <div class="col-12 mt-2">
+                    <div class="col-sm-12 mt-2">
                         <button class="btn btn-primary" (click)="editProject(project)">Edit</button>
                     </div>
-                    <div class="col-12 mt-2">
+                    <div class="col-sm-12 mt-2">
                         <button class="btn btn-danger" (click)="deleteProject(project)">Suspend</button>
                     </div>
-
-
                 </div>
-
-
             </div>
         </div>
     </div>
-
-
 </div>
+
+<!--MOdal Area-->
 <ng-template #userModal>
     <div class="modal-header">
         <h4 class="modal-title pull-left">Search User</h4>

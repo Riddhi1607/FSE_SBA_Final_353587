@@ -22,6 +22,9 @@ import { FilteruserPipe } from './pipes/filteruser.pipe';
 import { AppComponent } from './app.component';
 import { UserComponent } from './user/user.component';
 import { ProjectComponent } from './project/project.component';
+import { AddTaskComponent } from './add-task/add-task.component';
+import { ViewTaskComponent } from './view-task/view-task.component'
+
 
 
 
@@ -30,7 +33,9 @@ import { ProjectComponent } from './project/project.component';
     AppComponent,
     UserComponent,
     FilteruserPipe,
-    ProjectComponent
+    ProjectComponent,
+    AddTaskComponent,
+    ViewTaskComponent
   ],
   imports: [
     BrowserModule,
@@ -43,7 +48,7 @@ import { ProjectComponent } from './project/project.component';
 
     ToastrModule.forRoot({
       timeOut: 3000,
-      positionClass: 'toast-bottom-right',
+      positionClass: 'toast-top-left-Custom',
       preventDuplicates: true
     }),
     Ng5SliderModule
