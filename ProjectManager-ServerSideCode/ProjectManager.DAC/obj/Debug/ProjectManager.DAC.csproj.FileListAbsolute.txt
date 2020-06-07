@@ -1,0 +1,13 @@
+C:\Users\Riddhi\Desktop\Project Manager Riddhi\FSE_SBA_353587\ProjectManager-ServerSideCode\ProjectManager.DAC\bin\Debug\ProjectManager.DAC.dll
+C:\Users\Riddhi\Desktop\Project Manager Riddhi\FSE_SBA_353587\ProjectManager-ServerSideCode\ProjectManager.DAC\bin\Debug\ProjectManager.DAC.pdb
+C:\Users\Riddhi\Desktop\Project Manager Riddhi\FSE_SBA_353587\ProjectManager-ServerSideCode\ProjectManager.DAC\bin\Debug\EntityFramework.dll
+C:\Users\Riddhi\Desktop\Project Manager Riddhi\FSE_SBA_353587\ProjectManager-ServerSideCode\ProjectManager.DAC\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Riddhi\Desktop\Project Manager Riddhi\FSE_SBA_353587\ProjectManager-ServerSideCode\ProjectManager.DAC\bin\Debug\ProjectManager.Models.dll
+C:\Users\Riddhi\Desktop\Project Manager Riddhi\FSE_SBA_353587\ProjectManager-ServerSideCode\ProjectManager.DAC\bin\Debug\ProjectManager.Models.pdb
+C:\Users\Riddhi\Desktop\Project Manager Riddhi\FSE_SBA_353587\ProjectManager-ServerSideCode\ProjectManager.DAC\bin\Debug\EntityFramework.xml
+C:\Users\Riddhi\Desktop\Project Manager Riddhi\FSE_SBA_353587\ProjectManager-ServerSideCode\ProjectManager.DAC\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Riddhi\Desktop\Project Manager Riddhi\FSE_SBA_353587\ProjectManager-ServerSideCode\ProjectManager.DAC\obj\Debug\ProjectManager.DAC.csprojAssemblyReference.cache
+C:\Users\Riddhi\Desktop\Project Manager Riddhi\FSE_SBA_353587\ProjectManager-ServerSideCode\ProjectManager.DAC\obj\Debug\ProjectManager.DAC.csproj.CoreCompileInputs.cache
+C:\Users\Riddhi\Desktop\Project Manager Riddhi\FSE_SBA_353587\ProjectManager-ServerSideCode\ProjectManager.DAC\obj\Debug\ProjectManager.DAC.csproj.CopyComplete
+C:\Users\Riddhi\Desktop\Project Manager Riddhi\FSE_SBA_353587\ProjectManager-ServerSideCode\ProjectManager.DAC\obj\Debug\ProjectManager.DAC.dll
+C:\Users\Riddhi\Desktop\Project Manager Riddhi\FSE_SBA_353587\ProjectManager-ServerSideCode\ProjectManager.DAC\obj\Debug\ProjectManager.DAC.pdb
