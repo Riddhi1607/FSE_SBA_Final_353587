@@ -11,3 +11,16 @@ C:\Users\Riddhi\Desktop\Project Manager Riddhi\FSE_SBA_353587\ProjectManager-Ser
 C:\Users\Riddhi\Desktop\Project Manager Riddhi\FSE_SBA_353587\ProjectManager-ServerSideCode\ProjectManagerBC\obj\Debug\ProjectManagerBC.csproj.CopyComplete
 C:\Users\Riddhi\Desktop\Project Manager Riddhi\FSE_SBA_353587\ProjectManager-ServerSideCode\ProjectManagerBC\obj\Debug\ProjectManagerBC.dll
 C:\Users\Riddhi\Desktop\Project Manager Riddhi\FSE_SBA_353587\ProjectManager-ServerSideCode\ProjectManagerBC\obj\Debug\ProjectManagerBC.pdb
+C:\Users\Riddhi\Desktop\Project Manager Riddhi\FSE_SBA_Final_353587\ProjectManager-ServerSideCode\ProjectManagerBC\bin\Debug\ProjectManagerBC.dll
+C:\Users\Riddhi\Desktop\Project Manager Riddhi\FSE_SBA_Final_353587\ProjectManager-ServerSideCode\ProjectManagerBC\bin\Debug\ProjectManagerBC.pdb
+C:\Users\Riddhi\Desktop\Project Manager Riddhi\FSE_SBA_Final_353587\ProjectManager-ServerSideCode\ProjectManagerBC\bin\Debug\ProjectManager.DAC.dll
+C:\Users\Riddhi\Desktop\Project Manager Riddhi\FSE_SBA_Final_353587\ProjectManager-ServerSideCode\ProjectManagerBC\bin\Debug\ProjectManager.Models.dll
+C:\Users\Riddhi\Desktop\Project Manager Riddhi\FSE_SBA_Final_353587\ProjectManager-ServerSideCode\ProjectManagerBC\bin\Debug\EntityFramework.dll
+C:\Users\Riddhi\Desktop\Project Manager Riddhi\FSE_SBA_Final_353587\ProjectManager-ServerSideCode\ProjectManagerBC\bin\Debug\ProjectManager.DAC.pdb
+C:\Users\Riddhi\Desktop\Project Manager Riddhi\FSE_SBA_Final_353587\ProjectManager-ServerSideCode\ProjectManagerBC\bin\Debug\ProjectManager.Models.pdb
+C:\Users\Riddhi\Desktop\Project Manager Riddhi\FSE_SBA_Final_353587\ProjectManager-ServerSideCode\ProjectManagerBC\bin\Debug\EntityFramework.xml
+C:\Users\Riddhi\Desktop\Project Manager Riddhi\FSE_SBA_Final_353587\ProjectManager-ServerSideCode\ProjectManagerBC\obj\Debug\ProjectManagerBC.csprojAssemblyReference.cache
+C:\Users\Riddhi\Desktop\Project Manager Riddhi\FSE_SBA_Final_353587\ProjectManager-ServerSideCode\ProjectManagerBC\obj\Debug\ProjectManagerBC.csproj.CoreCompileInputs.cache
+C:\Users\Riddhi\Desktop\Project Manager Riddhi\FSE_SBA_Final_353587\ProjectManager-ServerSideCode\ProjectManagerBC\obj\Debug\ProjectManagerBC.csproj.CopyComplete
+C:\Users\Riddhi\Desktop\Project Manager Riddhi\FSE_SBA_Final_353587\ProjectManager-ServerSideCode\ProjectManagerBC\obj\Debug\ProjectManagerBC.dll
+C:\Users\Riddhi\Desktop\Project Manager Riddhi\FSE_SBA_Final_353587\ProjectManager-ServerSideCode\ProjectManagerBC\obj\Debug\ProjectManagerBC.pdb

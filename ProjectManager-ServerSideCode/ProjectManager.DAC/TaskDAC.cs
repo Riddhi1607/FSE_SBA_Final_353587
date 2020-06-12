@@ -7,31 +7,33 @@ using MODEL = ProjectManager.Models;
 
 namespace ProjectManager.DAC
 {
-    public class TaskDAC : BaseDAC
+    public class TaskDAC
     {
-        public TaskDAC() : base()
-        {
+        private IProject_ManagerContext _projectManagerCtx;
 
+        public TaskDAC() 
+        {
+            _projectManagerCtx = new Project_ManagerContext();
         }
-        public TaskDAC(Project_ManagerEntities context) : base(context)
+        public TaskDAC(IProject_ManagerContext context) 
         {
-
+            _projectManagerCtx = context;
         }
 
         public List<MODEL.Task> RetrieveTaskByProjectId(int projectId)
         {
-            using (projectManagerCtx)
+            using (_projectManagerCtx)
             {
-                return projectManagerCtx.Tasks.Where(z => z.Project_ID == projectId).Select(x => new MODEL.Task()
+                return _projectManagerCtx.Tasks.Where(z => z.Project_ID == projectId).Select(x => new MODEL.Task()
                 {
                     TaskId = x.Task_ID,
                     Task_Name = x.Task_Name,
-                    ParentTaskName = projectManagerCtx.ParentTasks.Where(y => y.Parent_Task_ID == x.Parent_Task_ID).FirstOrDefault().Parent_Task_Name,
+                    ParentTaskName = _projectManagerCtx.ParentTasks.Where(y => y.Parent_Task_ID == x.Parent_Task_ID).FirstOrDefault().Parent_Task_Name,
                     Start_Date = x.Start_Date,
                     End_Date = x.End_Date,
                     Priority = x.Priority,
                     Status = x.Status,
-                    User = projectManagerCtx.Users.Where(y => y.Task_ID == x.Task_ID).Select(z => new MODEL.User()
+                    User = _projectManagerCtx.Users.Where(y => y.Task_ID == x.Task_ID).Select(z => new MODEL.User()
                     {
                         UserId = z.User_ID,
                         FirstName = z.First_Name
@@ -43,9 +45,9 @@ namespace ProjectManager.DAC
 
         public List<MODEL.ParentTask> RetrieveParentTasks()
         {
-            using (projectManagerCtx)
+            using (_projectManagerCtx)
             {
-                return projectManagerCtx.ParentTasks.Select(x => new MODEL.ParentTask()
+                return _projectManagerCtx.ParentTasks.Select(x => new MODEL.ParentTask()
                 {
                     ParentTaskId = x.Parent_Task_ID,
                     ParentTaskName = x.Parent_Task_Name
@@ -56,12 +58,12 @@ namespace ProjectManager.DAC
 
         public int InsertTaskDetails(MODEL.Task task)
         {
-            using (projectManagerCtx)
+            using (_projectManagerCtx)
             {
 
                 if (task.Priority == 0)
                 {
-                    projectManagerCtx.ParentTasks.Add(new DAC.ParentTask()
+                    _projectManagerCtx.ParentTasks.Add(new DAC.ParentTask()
                     {
                         Parent_Task_Name = task.Task_Name
 
@@ -79,10 +81,10 @@ namespace ProjectManager.DAC
                         Priority = task.Priority,
                         Status = task.Status
                     };
-                    projectManagerCtx.Tasks.Add(taskDetail);
-                    projectManagerCtx.SaveChanges();
+                    _projectManagerCtx.Tasks.Add(taskDetail);
+                    _projectManagerCtx.SaveChanges();
 
-                    var editDetails = (from editUser in projectManagerCtx.Users
+                    var editDetails = (from editUser in _projectManagerCtx.Users
                                        where editUser.User_ID.ToString().Contains(task.User.UserId.ToString())
                                        select editUser).ToList();
                     // Modify existing records
@@ -91,15 +93,15 @@ namespace ProjectManager.DAC
                         editDetails.First().Task_ID = taskDetail.Task_ID;
                     }
                 }
-                return projectManagerCtx.SaveChanges();
+                return _projectManagerCtx.SaveChanges();
             }
         }
 
         public int UpdateTaskDetails(MODEL.Task task)
         {
-            using (projectManagerCtx)
+            using (_projectManagerCtx)
             {
-                var editDetails = (from editTask in projectManagerCtx.Tasks
+                var editDetails = (from editTask in _projectManagerCtx.Tasks
                                    where editTask.Task_ID.ToString().Contains(task.TaskId.ToString())
                                    select editTask).First();
                 // Modify existing records
@@ -112,7 +114,7 @@ namespace ProjectManager.DAC
                     editDetails.Priority = task.Priority;
 
                 }
-                var editDetailsUser = (from editUser in projectManagerCtx.Users
+                var editDetailsUser = (from editUser in _projectManagerCtx.Users
                                        where editUser.User_ID.ToString().Contains(task.User.UserId.ToString())
                                        select editUser).First();
                 // Modify existing records
@@ -120,16 +122,16 @@ namespace ProjectManager.DAC
                 {
                     editDetails.Task_ID = task.TaskId;
                 }
-                return projectManagerCtx.SaveChanges();
+                return _projectManagerCtx.SaveChanges();
             }
 
         }
 
         public int DeleteTaskDetails(MODEL.Task task)
         {
-            using (projectManagerCtx)
+            using (_projectManagerCtx)
             {
-                var deleteTask = (from editTask in projectManagerCtx.Tasks
+                var deleteTask = (from editTask in _projectManagerCtx.Tasks
                                   where editTask.Task_ID.ToString().Contains(task.TaskId.ToString())
                                   select editTask).First();
                 // Delete existing record
@@ -137,7 +139,7 @@ namespace ProjectManager.DAC
                 {
                     deleteTask.Status = 1;
                 }
-                return projectManagerCtx.SaveChanges();
+                return _projectManagerCtx.SaveChanges();
             }
 
         }

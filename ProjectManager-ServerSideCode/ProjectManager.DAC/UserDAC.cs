@@ -7,18 +7,25 @@ using MODEL = ProjectManager.Models;
 
 namespace ProjectManager.DAC
 {
-    public class UserDAC : BaseDAC
+    public class UserDAC 
     {
-        public UserDAC() : base()
-        {
+        private IProject_ManagerContext _projectManagerCtx;
 
+        public UserDAC() 
+        {
+            _projectManagerCtx = new Project_ManagerContext();
+        }
+
+        public UserDAC(IProject_ManagerContext context)
+        {
+            _projectManagerCtx = context;
         }
 
         public List<MODEL.User> GetUser()
         {
-            using (projectManagerCtx)
+            using (_projectManagerCtx)
             {
-                return projectManagerCtx.Users.Select(x => new MODEL.User()
+                return _projectManagerCtx.Users.Select(x => new MODEL.User()
                 {
                     FirstName = x.First_Name,
                     LastName = x.Last_Name,
@@ -31,23 +38,23 @@ namespace ProjectManager.DAC
 
         public int InsertUserDetails(MODEL.User user)
         {
-            using (projectManagerCtx)
+            using (_projectManagerCtx)
             {
-                projectManagerCtx.Users.Add(new DAC.User()
+                _projectManagerCtx.Users.Add(new DAC.User()
                 {
                     Last_Name = user.LastName,
                     First_Name = user.FirstName,
                     Employee_ID = user.EmployeeId
                 });
-                return projectManagerCtx.SaveChanges();
+                return _projectManagerCtx.SaveChanges();
             }
         }
 
         public int UpdateUserDetails(MODEL.User user)
         {
-            using (projectManagerCtx)
+            using (_projectManagerCtx)
             {
-                var editDetails = (from editUser in projectManagerCtx.Users
+                var editDetails = (from editUser in _projectManagerCtx.Users
                                    where editUser.User_ID == user.UserId
                                    select editUser).First();
                 // Modify existing records
@@ -58,24 +65,24 @@ namespace ProjectManager.DAC
                     editDetails.Employee_ID = user.EmployeeId;
 
                 }
-                return projectManagerCtx.SaveChanges();
+                return _projectManagerCtx.SaveChanges();
             }
 
         }
 
         public int DeleteUserDetails(MODEL.User user)
         {
-            using (projectManagerCtx)
+            using (_projectManagerCtx)
             {
-                var editDetails = (from editUser in projectManagerCtx.Users
+                var editDetails = (from editUser in _projectManagerCtx.Users
                                    where editUser.User_ID == user.UserId
                                    select editUser).First();
                 // Delete existing record
                 if (editDetails != null)
                 {
-                    projectManagerCtx.Users.Remove(editDetails);
+                    _projectManagerCtx.Users.Remove(editDetails);
                 }
-                return projectManagerCtx.SaveChanges();
+                return _projectManagerCtx.SaveChanges();
             }
 
         }

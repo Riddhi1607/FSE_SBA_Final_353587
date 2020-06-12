@@ -18,6 +18,12 @@ namespace ProjectManagerBC
 
         }
 
+        public UserBC(IProject_ManagerContext context)
+        {
+            userDAC = new UserDAC(context);
+
+        }
+
         public List<MODEL.User> GetUser()
         {
             return userDAC.GetUser();

@@ -15,6 +15,10 @@ namespace ProjectManagerBC
         {
             projectDAC = new ProjectDAC();
         }
+        public ProjectBC(IProject_ManagerContext context)
+        {
+            projectDAC = new ProjectDAC(context);
+        }
 
         public List<MODEL.Project> RetrieveProjects()
         {

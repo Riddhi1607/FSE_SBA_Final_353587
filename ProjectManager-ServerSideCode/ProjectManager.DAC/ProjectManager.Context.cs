@@ -12,19 +12,19 @@ namespace ProjectManager.DAC
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
-    
-    public partial class Project_ManagerEntities : DbContext
+
+    public partial class Project_ManagerContext : DbContext, IProject_ManagerContext
     {
-        public Project_ManagerEntities()
+        public Project_ManagerContext()
             : base("name=Project_ManagerEntities")
         {
         }
-    
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             throw new UnintentionalCodeFirstException();
         }
-    
+
         public virtual DbSet<ParentTask> ParentTasks { get; set; }
         public virtual DbSet<Project> Projects { get; set; }
         public virtual DbSet<Task> Tasks { get; set; }

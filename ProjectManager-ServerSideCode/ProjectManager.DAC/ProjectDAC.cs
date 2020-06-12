@@ -7,41 +7,43 @@ using MODEL = ProjectManager.Models;
 
 namespace ProjectManager.DAC
 {
-    public class ProjectDAC : BaseDAC
+    public class ProjectDAC
     {
-        public ProjectDAC() : base()
-        {
+        private IProject_ManagerContext _projectManagerCtx;
 
+        public ProjectDAC()
+        {
+            _projectManagerCtx = new Project_ManagerContext();
         }
-        public ProjectDAC(Project_ManagerEntities context) : base(context)
+        public ProjectDAC(IProject_ManagerContext context)
         {
-
+            _projectManagerCtx = context;
         }
 
         public List<MODEL.Project> RetrieveProjects()
         {
-            using (projectManagerCtx)
+            using (_projectManagerCtx)
             {
-                return projectManagerCtx.Projects.Select(x => new MODEL.Project()
+                return _projectManagerCtx.Projects.Select(x => new MODEL.Project()
                 {
                     ProjectId = x.Project_ID,
                     ProjectName = x.Project_Name,
                     ProjectEndDate = x.End_Date,
                     ProjectStartDate = x.Start_Date,
                     Priority = x.Priority,
-                    User = projectManagerCtx.Users.Where(y => y.Project_ID == x.Project_ID).Select(z => new MODEL.User()
+                    User = _projectManagerCtx.Users.Where(y => y.Project_ID == x.Project_ID).Select(z => new MODEL.User()
                     {
                         UserId = z.User_ID
                     }).FirstOrDefault(),
-                    NoOfTasks = projectManagerCtx.Tasks.Where(y => y.Project_ID == x.Project_ID).Count(),
-                    NoOfCompletedTasks = projectManagerCtx.Tasks.Where(y => y.Project_ID == x.Project_ID && y.Status == 1).Count(),
+                    NoOfTasks = _projectManagerCtx.Tasks.Where(y => y.Project_ID == x.Project_ID).Count(),
+                    NoOfCompletedTasks = _projectManagerCtx.Tasks.Where(y => y.Project_ID == x.Project_ID && y.Status == 1).Count(),
                 }).ToList();
             }
         }
 
         public int InsertProjectDetails(MODEL.Project project)
         {
-            using (projectManagerCtx)
+            using (_projectManagerCtx)
             {
                 DAC.Project proj = new DAC.Project()
                 {
@@ -50,9 +52,9 @@ namespace ProjectManager.DAC
                     End_Date = project.ProjectEndDate,
                     Priority = project.Priority
                 };
-                projectManagerCtx.Projects.Add(proj);
-                projectManagerCtx.SaveChanges();
-                var editDetails = (from editUser in projectManagerCtx.Users
+                _projectManagerCtx.Projects.Add(proj);
+                _projectManagerCtx.SaveChanges();
+                var editDetails = (from editUser in _projectManagerCtx.Users
                                    where editUser.User_ID.ToString().Contains(project.User.UserId.ToString())
                                    select editUser).First();
                 // Modify existing records
@@ -60,15 +62,15 @@ namespace ProjectManager.DAC
                 {
                     editDetails.Project_ID = proj.Project_ID;
                 }
-                return projectManagerCtx.SaveChanges();
+                return _projectManagerCtx.SaveChanges();
             }
         }
 
         public int UpdateProjectDetails(MODEL.Project project)
         {
-            using (projectManagerCtx)
+            using (_projectManagerCtx)
             {
-                var editProjDetails = (from editProject in projectManagerCtx.Projects
+                var editProjDetails = (from editProject in _projectManagerCtx.Projects
                                        where editProject.Project_ID.ToString().Contains(project.ProjectId.ToString())
                                        select editProject).First();
                 // Modify existing records
@@ -81,7 +83,7 @@ namespace ProjectManager.DAC
                 }
 
 
-                var editDetails = (from editUser in projectManagerCtx.Users
+                var editDetails = (from editUser in _projectManagerCtx.Users
                                    where editUser.User_ID.ToString().Contains(project.User.UserId.ToString())
                                    select editUser).First();
                 // Modify existing records
@@ -89,24 +91,24 @@ namespace ProjectManager.DAC
                 {
                     editDetails.Project_ID = project.ProjectId;
                 }
-                return projectManagerCtx.SaveChanges();
+                return _projectManagerCtx.SaveChanges();
             }
 
         }
         public int DeleteProjectDetails(MODEL.Project project)
         {
-            using (projectManagerCtx)
+            using (_projectManagerCtx)
             {
 
-                var editDetails = (from proj in projectManagerCtx.Projects
+                var editDetails = (from proj in _projectManagerCtx.Projects
                                    where proj.Project_ID == project.ProjectId
                                    select proj).First();
                 // Delete existing record
                 if (editDetails != null)
                 {
-                    projectManagerCtx.Projects.Remove(editDetails);
+                    _projectManagerCtx.Projects.Remove(editDetails);
                 }
-                return projectManagerCtx.SaveChanges();
+                return _projectManagerCtx.SaveChanges();
             }
 
         }

@@ -11,9 +11,16 @@ namespace ProjectManagerBC
     public class TaskBC
     {
         public TaskDAC taskDAC = null;
+
+
         public TaskBC()
         {
             taskDAC = new TaskDAC();
+        }
+
+        public TaskBC(IProject_ManagerContext context)
+        {
+            taskDAC = new TaskDAC(context);
         }
 
         public List<MODEL.Task> RetrieveTaskByProjectId(int projectId)

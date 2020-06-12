@@ -51,7 +51,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BaseDAC.cs" />
+    <Compile Include="IProject_ManagerContext.cs" />
     <Compile Include="ParentTask.cs">
       <DependentUpon>ProjectManager.tt</DependentUpon>
     </Compile>

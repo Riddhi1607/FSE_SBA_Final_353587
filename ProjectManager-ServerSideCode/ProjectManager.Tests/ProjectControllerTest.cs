@@ -3,19 +3,19 @@ using ProjectManager.Controllers;
 using ProjectManager.Models;
 using System;
 using System.Collections.Generic;
+using BC = ProjectManagerBC;
 
 namespace ProjectManager.Test
 {
-
     [TestClass]
     public class ProjectControllerTest
     {
         [TestMethod]
         public void TestGetProjects_Success()
         {
-            var context = new MockProjectManagerEntities();
-            var projects = new TestDbSet<DAC.Project>();
-            projects.Add(new DAC.Project()
+            var context = new Test_Project_ManagerContext();
+
+            context.Projects.Add(new DAC.Project()
             {
                 Project_ID = 1234,
                 Project_Name = "MyProject",
@@ -23,7 +23,7 @@ namespace ProjectManager.Test
                 End_Date = DateTime.Now.AddDays(5),
                 Priority = 3
             });
-            projects.Add(new DAC.Project()
+            context.Projects.Add(new DAC.Project()
             {
                 Project_ID = 12345,
                 Project_Name = "MyProject",
@@ -31,7 +31,7 @@ namespace ProjectManager.Test
                 End_Date = DateTime.Now.AddDays(5),
                 Priority = 3
             });
-            context.Projects = projects;
+
 
             var controller = new ProjectController(new BC.ProjectBC(context));
             var result = controller.RetrieveProjects() as JSendResponse;
@@ -44,13 +44,13 @@ namespace ProjectManager.Test
         [TestMethod]
         public void TestInsertProjects_Success()
         {
-            var context = new MockProjectManagerEntities();
+            var context = new Test_Project_ManagerContext();
             var users = new TestDbSet<DAC.User>();
             users.Add(new DAC.User()
             {
                 Employee_ID = "375543",
-                First_Name = "Soumyadip",
-                Last_Name = "Hati",
+                First_Name = "Robert",
+                Last_Name = "Morin",
                 User_ID = 123,
                 Task_ID = 123
             });
@@ -66,14 +66,14 @@ namespace ProjectManager.Test
                 NoOfTasks = 5,
                 User = new User()
                 {
-                    FirstName = "Soumyadip",
-                    LastName = "Hati",
-                    EmployeeId = "123456",
-                    UserId = 123
+                    FirstName = "Riddhi",
+                    LastName = "Roy",
+                    EmployeeId = "353587",
+                    UserId = 001
                 }
             };
             var controller = new ProjectController(new BC.ProjectBC(context));
-            var result = controller.InsertProjectDetails(testProject) as JSendResponse;
+            var result = controller.AddProjectDetails(testProject) as JSendResponse;
 
             Assert.IsNotNull(result);
             Assert.IsNotNull((context.Users.Local[0]).Project_ID);
@@ -82,7 +82,7 @@ namespace ProjectManager.Test
         [TestMethod]
         public void TestUpdateProjects_Success()
         {
-            var context = new MockProjectManagerEntities();
+            var context = new Test_Project_ManagerContext();
             var projects = new TestDbSet<DAC.Project>();
             var users = new TestDbSet<DAC.User>();
             users.Add(new DAC.User()
@@ -116,8 +116,8 @@ namespace ProjectManager.Test
                 User = new User()
                 {
                     EmployeeId = 418220.ToString(),
-                    FirstName = "PIYALI",
-                    LastName = "SANTRA",
+                    FirstName = "Riddhi",
+                    LastName = "Roy Choudhury",
                     ProjectId = 123,
                     UserId = 123
                 }
@@ -133,7 +133,7 @@ namespace ProjectManager.Test
         [TestMethod]
         public void TestDeleteProjects_Success()
         {
-            var context = new MockProjectManagerEntities();
+            var context = new Test_Project_ManagerContext();
             var projects = new TestDbSet<DAC.Project>();
             projects.Add(new DAC.Project()
             {
@@ -166,8 +166,8 @@ namespace ProjectManager.Test
                 User = new User()
                 {
                     EmployeeId = 418220.ToString(),
-                    FirstName = "PIYALI",
-                    LastName = "SANTRA",
+                    FirstName = "Riddhi",
+                    LastName = "Roy Choudhury",
                     ProjectId = 123,
                     UserId = 123
                 }
@@ -182,33 +182,33 @@ namespace ProjectManager.Test
         [ExpectedException(typeof(ArgumentNullException))]
         public void TestInsertProject_NoProjectAsParameter()
         {
-            var context = new MockProjectManagerEntities();
+            var context = new Test_Project_ManagerContext();
             var users = new TestDbSet<DAC.User>();
             users.Add(new DAC.User()
             {
                 Employee_ID = "375543",
-                First_Name = "Soumyadip",
-                Last_Name = "Hati",
+                First_Name = "Robert",
+                Last_Name = "Morin",
                 User_ID = 123,
                 Task_ID = 123
             });
             context.Users = users;
             Models.Project testProject = null;
             var controller = new ProjectController(new BC.ProjectBC(context));
-            var result = controller.InsertProjectDetails(testProject) as JSendResponse;
+            var result = controller.AddProjectDetails(testProject) as JSendResponse;
         }
 
         [TestMethod]
         [ExpectedException(typeof(ArithmeticException))]
         public void TestInsertProject_NegativeProjectId()
         {
-            var context = new MockProjectManagerEntities();
+            var context = new Test_Project_ManagerContext();
             var users = new TestDbSet<DAC.User>();
             users.Add(new DAC.User()
             {
                 Employee_ID = "375543",
-                First_Name = "Soumyadip",
-                Last_Name = "Hati",
+                First_Name = "Robert",
+                Last_Name = "Morin",
                 User_ID = 123,
                 Task_ID = 123
             });
@@ -225,27 +225,27 @@ namespace ProjectManager.Test
                 User = new User()
                 {
                     EmployeeId = 123.ToString(),
-                    FirstName = "PIYALI",
-                    LastName = "SANTRA",
+                    FirstName = "Riddhi",
+                    LastName = "Roy Choudhury",
                     ProjectId = -234,
                     UserId = 123
                 }
             };
             var controller = new ProjectController(new BC.ProjectBC(context));
-            var result = controller.InsertProjectDetails(testProject) as JSendResponse;
+            var result = controller.AddProjectDetails(testProject) as JSendResponse;
         }
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentNullException))]
         public void TestInsertProject_UserNullInProject()
         {
-            var context = new MockProjectManagerEntities();
+            var context = new Test_Project_ManagerContext();
             var users = new TestDbSet<DAC.User>();
             users.Add(new DAC.User()
             {
                 Employee_ID = "375543",
-                First_Name = "Soumyadip",
-                Last_Name = "Hati",
+                First_Name = "Robert",
+                Last_Name = "Morin",
                 User_ID = 123,
                 Task_ID = 123
             });
@@ -262,20 +262,20 @@ namespace ProjectManager.Test
                 User = null
             };
             var controller = new ProjectController(new BC.ProjectBC(context));
-            var result = controller.InsertProjectDetails(testProject) as JSendResponse;
+            var result = controller.AddProjectDetails(testProject) as JSendResponse;
         }
 
         [TestMethod]
         [ExpectedException(typeof(ArithmeticException))]
         public void TestInsertProject_NegativeProjectIdInUser()
         {
-            var context = new MockProjectManagerEntities();
+            var context = new Test_Project_ManagerContext();
             var users = new TestDbSet<DAC.User>();
             users.Add(new DAC.User()
             {
                 Employee_ID = "375543",
-                First_Name = "Soumyadip",
-                Last_Name = "Hati",
+                First_Name = "Robert",
+                Last_Name = "Morin",
                 User_ID = 123,
                 Task_ID = 123
             });
@@ -292,27 +292,27 @@ namespace ProjectManager.Test
                 User = new User()
                 {
                     EmployeeId = 123.ToString(),
-                    FirstName = "PIYALI",
-                    LastName = "SANTRA",
+                    FirstName = "Riddhi",
+                    LastName = "Roy Choudhury",
                     ProjectId = -234,
                     UserId = 123
                 }
             };
             var controller = new ProjectController(new BC.ProjectBC(context));
-            var result = controller.InsertProjectDetails(testProject) as JSendResponse;
+            var result = controller.AddProjectDetails(testProject) as JSendResponse;
         }
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentException))]
         public void TestInsertProject_CompletedTasksGreater()
         {
-            var context = new MockProjectManagerEntities();
+            var context = new Test_Project_ManagerContext();
             var users = new TestDbSet<DAC.User>();
             users.Add(new DAC.User()
             {
                 Employee_ID = "375543",
-                First_Name = "Soumyadip",
-                Last_Name = "Hati",
+                First_Name = "Robert",
+                Last_Name = "Morin",
                 User_ID = 123,
                 Task_ID = 123
             });
@@ -329,27 +329,27 @@ namespace ProjectManager.Test
                 User = new User()
                 {
                     EmployeeId = 123.ToString(),
-                    FirstName = "PIYALI",
-                    LastName = "SANTRA",
+                    FirstName = "Riddhi",
+                    LastName = "Roy Choudhury",
                     ProjectId = 234,
                     UserId = 123
                 }
             };
             var controller = new ProjectController(new BC.ProjectBC(context));
-            var result = controller.InsertProjectDetails(testProject) as JSendResponse;
+            var result = controller.AddProjectDetails(testProject) as JSendResponse;
         }
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentNullException))]
         public void TestUpdateProject_NoProjectAsParameter()
         {
-            var context = new MockProjectManagerEntities();
+            var context = new Test_Project_ManagerContext();
             var users = new TestDbSet<DAC.User>();
             users.Add(new DAC.User()
             {
                 Employee_ID = "375543",
-                First_Name = "Soumyadip",
-                Last_Name = "Hati",
+                First_Name = "Robert",
+                Last_Name = "Morin",
                 User_ID = 123,
                 Task_ID = 123
             });
@@ -363,13 +363,13 @@ namespace ProjectManager.Test
         [ExpectedException(typeof(ArithmeticException))]
         public void TestUpdateProject_NegativeProjectId()
         {
-            var context = new MockProjectManagerEntities();
+            var context = new Test_Project_ManagerContext();
             var users = new TestDbSet<DAC.User>();
             users.Add(new DAC.User()
             {
                 Employee_ID = "375543",
-                First_Name = "Soumyadip",
-                Last_Name = "Hati",
+                First_Name = "Robert",
+                Last_Name = "Morin",
                 User_ID = 123,
                 Task_ID = 123
             });
@@ -386,8 +386,8 @@ namespace ProjectManager.Test
                 User = new User()
                 {
                     EmployeeId = 123.ToString(),
-                    FirstName = "PIYALI",
-                    LastName = "SANTRA",
+                    FirstName = "Riddhi",
+                    LastName = "Roy Choudhury",
                     ProjectId = -234,
                     UserId = 123
                 }
@@ -400,13 +400,13 @@ namespace ProjectManager.Test
         [ExpectedException(typeof(ArgumentNullException))]
         public void TestUpdateProject_UserNullInProject()
         {
-            var context = new MockProjectManagerEntities();
+            var context = new Test_Project_ManagerContext();
             var users = new TestDbSet<DAC.User>();
             users.Add(new DAC.User()
             {
                 Employee_ID = "375543",
-                First_Name = "Soumyadip",
-                Last_Name = "Hati",
+                First_Name = "Robert",
+                Last_Name = "Morin",
                 User_ID = 123,
                 Task_ID = 123
             });
@@ -430,13 +430,13 @@ namespace ProjectManager.Test
         [ExpectedException(typeof(ArithmeticException))]
         public void TestUpdateProject_NegativeProjectIdInUser()
         {
-            var context = new MockProjectManagerEntities();
+            var context = new Test_Project_ManagerContext();
             var users = new TestDbSet<DAC.User>();
             users.Add(new DAC.User()
             {
                 Employee_ID = "375543",
-                First_Name = "Soumyadip",
-                Last_Name = "Hati",
+                First_Name = "Robert",
+                Last_Name = "Morin",
                 User_ID = 123,
                 Task_ID = 123
             });
@@ -453,8 +453,8 @@ namespace ProjectManager.Test
                 User = new User()
                 {
                     EmployeeId = 123.ToString(),
-                    FirstName = "PIYALI",
-                    LastName = "SANTRA",
+                    FirstName = "Riddhi",
+                    LastName = "Roy Choudhury",
                     ProjectId = -234,
                     UserId = 123
                 }
@@ -467,13 +467,13 @@ namespace ProjectManager.Test
         [ExpectedException(typeof(ArgumentException))]
         public void TestUpdateProject_CompletedTasksGreater()
         {
-            var context = new MockProjectManagerEntities();
+            var context = new Test_Project_ManagerContext();
             var users = new TestDbSet<DAC.User>();
             users.Add(new DAC.User()
             {
                 Employee_ID = "375543",
-                First_Name = "Soumyadip",
-                Last_Name = "Hati",
+                First_Name = "Robert",
+                Last_Name = "Morin",
                 User_ID = 123,
                 Task_ID = 123
             });
@@ -490,8 +490,8 @@ namespace ProjectManager.Test
                 User = new User()
                 {
                     EmployeeId = 123.ToString(),
-                    FirstName = "PIYALI",
-                    LastName = "SANTRA",
+                    FirstName = "Riddhi",
+                    LastName = "Roy Choudhury",
                     ProjectId = 234,
                     UserId = 123
                 }
@@ -504,13 +504,13 @@ namespace ProjectManager.Test
         [ExpectedException(typeof(ArgumentNullException))]
         public void TestDeleteProject_NoProjectAsParameter()
         {
-            var context = new MockProjectManagerEntities();
+            var context = new Test_Project_ManagerContext();
             var users = new TestDbSet<DAC.User>();
             users.Add(new DAC.User()
             {
                 Employee_ID = "375543",
-                First_Name = "Soumyadip",
-                Last_Name = "Hati",
+                First_Name = "Robert",
+                Last_Name = "Morin",
                 User_ID = 123,
                 Task_ID = 123
             });
@@ -524,13 +524,13 @@ namespace ProjectManager.Test
         [ExpectedException(typeof(ArithmeticException))]
         public void TestDeleteProject_NegativeProjectId()
         {
-            var context = new MockProjectManagerEntities();
+            var context = new Test_Project_ManagerContext();
             var users = new TestDbSet<DAC.User>();
             users.Add(new DAC.User()
             {
                 Employee_ID = "375543",
-                First_Name = "Soumyadip",
-                Last_Name = "Hati",
+                First_Name = "Robert",
+                Last_Name = "Morin",
                 User_ID = 123,
                 Task_ID = 123
             });
@@ -547,8 +547,8 @@ namespace ProjectManager.Test
                 User = new User()
                 {
                     EmployeeId = 123.ToString(),
-                    FirstName = "PIYALI",
-                    LastName = "SANTRA",
+                    FirstName = "Riddhi",
+                    LastName = "Roy Choudhury",
                     ProjectId = -234,
                     UserId = 123
                 }
@@ -561,13 +561,13 @@ namespace ProjectManager.Test
         [ExpectedException(typeof(ArgumentNullException))]
         public void TestDeleteProject_UserNullInProject()
         {
-            var context = new MockProjectManagerEntities();
+            var context = new Test_Project_ManagerContext();
             var users = new TestDbSet<DAC.User>();
             users.Add(new DAC.User()
             {
                 Employee_ID = "375543",
-                First_Name = "Soumyadip",
-                Last_Name = "Hati",
+                First_Name = "Robert",
+                Last_Name = "Morin",
                 User_ID = 123,
                 Task_ID = 123
             });
@@ -591,13 +591,13 @@ namespace ProjectManager.Test
         [ExpectedException(typeof(ArithmeticException))]
         public void TestDeleteProject_NegativeProjectIdInUser()
         {
-            var context = new MockProjectManagerEntities();
+            var context = new Test_Project_ManagerContext();
             var users = new TestDbSet<DAC.User>();
             users.Add(new DAC.User()
             {
                 Employee_ID = "375543",
-                First_Name = "Soumyadip",
-                Last_Name = "Hati",
+                First_Name = "Robert",
+                Last_Name = "Morin",
                 User_ID = 123,
                 Task_ID = 123
             });
@@ -614,8 +614,8 @@ namespace ProjectManager.Test
                 User = new User()
                 {
                     EmployeeId = 123.ToString(),
-                    FirstName = "PIYALI",
-                    LastName = "SANTRA",
+                    FirstName = "Riddhi",
+                    LastName = "Roy Choudhury",
                     ProjectId = -234,
                     UserId = 123
                 }
@@ -628,13 +628,13 @@ namespace ProjectManager.Test
         [ExpectedException(typeof(ArgumentException))]
         public void TestDeleteProject_CompletedTasksGreater()
         {
-            var context = new MockProjectManagerEntities();
+            var context = new Test_Project_ManagerContext();
             var users = new TestDbSet<DAC.User>();
             users.Add(new DAC.User()
             {
                 Employee_ID = "375543",
-                First_Name = "Soumyadip",
-                Last_Name = "Hati",
+                First_Name = "Robert",
+                Last_Name = "Morin",
                 User_ID = 123,
                 Task_ID = 123
             });
@@ -651,8 +651,8 @@ namespace ProjectManager.Test
                 User = new User()
                 {
                     EmployeeId = 123.ToString(),
-                    FirstName = "PIYALI",
-                    LastName = "SANTRA",
+                    FirstName = "Riddhi",
+                    LastName = "Roy Choudhury",
                     ProjectId = 234,
                     UserId = 123
                 }

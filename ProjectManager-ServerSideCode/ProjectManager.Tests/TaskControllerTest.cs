@@ -3,6 +3,7 @@ using ProjectManager.Controllers;
 using ProjectManager.Models;
 using System;
 using System.Collections.Generic;
+using BC = ProjectManagerBC;
 
 namespace ProjectManager.Test
 {
@@ -13,7 +14,7 @@ namespace ProjectManager.Test
         [TestMethod]
         public void TestRetrieveTasks_Success()
         {
-            var context = new MockProjectManagerEntities();
+            var context = new Test_Project_ManagerContext();
             var tasks = new TestDbSet<DAC.Task>();
             var users = new TestDbSet<DAC.User>();
             var parentTasks = new TestDbSet<DAC.ParentTask>();
@@ -28,8 +29,8 @@ namespace ProjectManager.Test
             users.Add(new DAC.User()
             {
                 Employee_ID = "375543",
-                First_Name = "Soumyadip",
-                Last_Name = "Hati",
+                First_Name = "Riddhi",
+                Last_Name = "Roy Choudhury",
                 User_ID = 123,
                 Task_ID = 1
             });
@@ -58,7 +59,7 @@ namespace ProjectManager.Test
         [TestMethod]
         public void TestRetrieveParentTasks_Success()
         {
-            var context = new MockProjectManagerEntities();
+            var context = new Test_Project_ManagerContext();
             var parentTasks = new TestDbSet<DAC.ParentTask>();
             parentTasks.Add(new DAC.ParentTask()
             {
@@ -85,7 +86,7 @@ namespace ProjectManager.Test
         [TestMethod]
         public void TestInsertTasks_Success()
         {
-            var context = new MockProjectManagerEntities();
+            var context = new Test_Project_ManagerContext();
             var users = new TestDbSet<DAC.User>();
             users.Add(new DAC.User()
             {
@@ -116,7 +117,7 @@ namespace ProjectManager.Test
             };
 
             var controller = new TaskController(new BC.TaskBC(context));
-            var result = controller.InsertTaskDetails(task) as JSendResponse;
+            var result = controller.AddTaskDetails(task) as JSendResponse;
 
 
             Assert.IsNotNull(result);
@@ -127,7 +128,7 @@ namespace ProjectManager.Test
         [TestMethod]
         public void TestUpdateProjects_Success()
         {
-            var context = new MockProjectManagerEntities();
+            var context = new Test_Project_ManagerContext();
             var tasks = new TestDbSet<DAC.Task>();
             var users = new TestDbSet<DAC.User>();
             users.Add(new DAC.User()
@@ -164,8 +165,8 @@ namespace ProjectManager.Test
                 Status = 0,
                 User = new User()
                 {
-                    FirstName = "Soumyadip",
-                    LastName = "Hati",
+                    FirstName = "Riddhi",
+                    LastName = "Roy Choudhury",
                     EmployeeId = "123456",
                     UserId = 123
                 }
@@ -181,7 +182,7 @@ namespace ProjectManager.Test
         [TestMethod]
         public void TestDeleteProjects_Success()
         {
-            var context = new MockProjectManagerEntities();
+            var context = new Test_Project_ManagerContext();
             var tasks = new TestDbSet<DAC.Task>();
 
             tasks.Add(new DAC.Task()
@@ -218,7 +219,7 @@ namespace ProjectManager.Test
         [TestMethod]
         public void TestRetrieveTaskByProjectId_Success()
         {
-            var context = new MockProjectManagerEntities();
+            var context = new Test_Project_ManagerContext();
             var tasks = new TestDbSet<DAC.Task>();
             var users = new TestDbSet<DAC.User>();
             var parentTasks = new TestDbSet<DAC.ParentTask>();
@@ -232,8 +233,8 @@ namespace ProjectManager.Test
             users.Add(new DAC.User()
             {
                 Employee_ID = "375543",
-                First_Name = "Soumyadip",
-                Last_Name = "Hati",
+                First_Name = "Riddhi",
+                Last_Name = "Roy Choudhury",
                 User_ID = 123,
                 Task_ID = 12345,
                 Project_ID = 1234
@@ -276,7 +277,7 @@ namespace ProjectManager.Test
         [ExpectedException(typeof(ArithmeticException))]
         public void TestRetrieveTaskByProjectId_NegativeTaskId()
         {
-            var context = new MockProjectManagerEntities();
+            var context = new Test_Project_ManagerContext();
 
             var controller = new TaskController(new BC.TaskBC(context));
             var result = controller.RetrieveTaskByProjectId(-12345) as JSendResponse;
@@ -290,10 +291,10 @@ namespace ProjectManager.Test
         [ExpectedException(typeof(ArgumentNullException))]
         public void TestInsertTask_NullTaskObject()
         {
-            var context = new MockProjectManagerEntities();
+            var context = new Test_Project_ManagerContext();
 
             var controller = new TaskController(new BC.TaskBC(context));
-            var result = controller.InsertTaskDetails(null) as JSendResponse;
+            var result = controller.AddTaskDetails(null) as JSendResponse;
         }
 
 
@@ -301,33 +302,33 @@ namespace ProjectManager.Test
         [ExpectedException(typeof(ArithmeticException))]
         public void TestInsertTask_NegativeTaskParentId()
         {
-            var context = new MockProjectManagerEntities();
+            var context = new Test_Project_ManagerContext();
             ProjectManager.Models.Task task = new Models.Task();
             task.Parent_ID = -234;
             var controller = new TaskController(new BC.TaskBC(context));
-            var result = controller.InsertTaskDetails(task) as JSendResponse;
+            var result = controller.AddTaskDetails(task) as JSendResponse;
         }
 
         [TestMethod]
         [ExpectedException(typeof(ArithmeticException))]
         public void TestInsertTask_NegativeProjectId()
         {
-            var context = new MockProjectManagerEntities();
+            var context = new Test_Project_ManagerContext();
             ProjectManager.Models.Task task = new Models.Task();
             task.Project_ID = -234;
             var controller = new TaskController(new BC.TaskBC(context));
-            var result = controller.InsertTaskDetails(task) as JSendResponse;
+            var result = controller.AddTaskDetails(task) as JSendResponse;
         }
 
         [TestMethod]
         [ExpectedException(typeof(ArithmeticException))]
         public void TestInsertTask_NegativeTaskId()
         {
-            var context = new MockProjectManagerEntities();
+            var context = new Test_Project_ManagerContext();
             ProjectManager.Models.Task task = new Models.Task();
             task.TaskId = -234;
             var controller = new TaskController(new BC.TaskBC(context));
-            var result = controller.InsertTaskDetails(task) as JSendResponse;
+            var result = controller.AddTaskDetails(task) as JSendResponse;
         }
 
 
@@ -337,7 +338,7 @@ namespace ProjectManager.Test
         [ExpectedException(typeof(ArgumentNullException))]
         public void TestUpdateTask_NullTaskObject()
         {
-            var context = new MockProjectManagerEntities();
+            var context = new Test_Project_ManagerContext();
 
             var controller = new TaskController(new BC.TaskBC(context));
             var result = controller.UpdateTaskDetails(null) as JSendResponse;
@@ -347,7 +348,7 @@ namespace ProjectManager.Test
         [ExpectedException(typeof(ArithmeticException))]
         public void TestUpdateTask_NegativeTaskParentId()
         {
-            var context = new MockProjectManagerEntities();
+            var context = new Test_Project_ManagerContext();
             ProjectManager.Models.Task task = new Models.Task();
             task.Parent_ID = -234;
             var controller = new TaskController(new BC.TaskBC(context));
@@ -358,7 +359,7 @@ namespace ProjectManager.Test
         [ExpectedException(typeof(ArithmeticException))]
         public void TestUpdateTask_NegativeProjectId()
         {
-            var context = new MockProjectManagerEntities();
+            var context = new Test_Project_ManagerContext();
             ProjectManager.Models.Task task = new Models.Task();
             task.Project_ID = -234;
             var controller = new TaskController(new BC.TaskBC(context));
@@ -369,7 +370,7 @@ namespace ProjectManager.Test
         [ExpectedException(typeof(ArithmeticException))]
         public void TestUpdateTask_NegativeTaskId()
         {
-            var context = new MockProjectManagerEntities();
+            var context = new Test_Project_ManagerContext();
             ProjectManager.Models.Task task = new Models.Task();
             task.TaskId = -234;
             var controller = new TaskController(new BC.TaskBC(context));
@@ -383,7 +384,7 @@ namespace ProjectManager.Test
         [ExpectedException(typeof(ArgumentNullException))]
         public void TestDeleteTask_NullTaskObject()
         {
-            var context = new MockProjectManagerEntities();
+            var context = new Test_Project_ManagerContext();
 
             var controller = new TaskController(new BC.TaskBC(context));
             var result = controller.DeleteTaskDetails(null) as JSendResponse;
@@ -395,7 +396,7 @@ namespace ProjectManager.Test
         [ExpectedException(typeof(ArithmeticException))]
         public void TestDeleteTask_NegativeTaskParentId()
         {
-            var context = new MockProjectManagerEntities();
+            var context = new Test_Project_ManagerContext();
             ProjectManager.Models.Task task = new Models.Task();
             task.Parent_ID = -234;
             var controller = new TaskController(new BC.TaskBC(context));
@@ -406,7 +407,7 @@ namespace ProjectManager.Test
         [ExpectedException(typeof(ArithmeticException))]
         public void TestDeleteTask_NegativeProjectId()
         {
-            var context = new MockProjectManagerEntities();
+            var context = new Test_Project_ManagerContext();
             ProjectManager.Models.Task task = new Models.Task();
             task.Project_ID = -234;
             var controller = new TaskController(new BC.TaskBC(context));
@@ -417,7 +418,7 @@ namespace ProjectManager.Test
         [ExpectedException(typeof(ArithmeticException))]
         public void TestDeleteTask_NegativeTaskId()
         {
-            var context = new MockProjectManagerEntities();
+            var context = new Test_Project_ManagerContext();
             ProjectManager.Models.Task task = new Models.Task();
             task.TaskId = -234;
             var controller = new TaskController(new BC.TaskBC(context));

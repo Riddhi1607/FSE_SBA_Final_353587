@@ -4,50 +4,10 @@ using ProjectManager.Models;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using BC = ProjectManagerBC;
 
 namespace ProjectManager.Test
 {
-    class MockProjectManagerEntities : DAC.Project_ManagerEntities
-    {
-        private DbSet<DAC.User> _users = null;
-        private DbSet<DAC.Project> _projects = null;
-        private DbSet<DAC.Task> _tasks = null;
-        public override DbSet<DAC.User> Users
-        {
-            get
-            {
-                return _users;
-            }
-            set
-            {
-                _users = value;
-            }
-        }
-
-        public override DbSet<DAC.Project> Projects
-        {
-            get
-            {
-                return _projects;
-            }
-            set
-            {
-                _projects = value;
-            }
-        }
-
-        public override DbSet<DAC.Task> Tasks
-        {
-            get
-            {
-                return _tasks;
-            }
-            set
-            {
-                _tasks = value;
-            }
-        }
-    }
 
     [TestClass]
     public class UserControllerTest
@@ -55,7 +15,7 @@ namespace ProjectManager.Test
         [TestMethod]
         public void TestGetUser_Success()
         {
-            var context = new MockProjectManagerEntities();
+            var context = new Test_Project_ManagerContext();
             var users = new TestDbSet<DAC.User>();
             users.Add(new DAC.User()
             {
@@ -88,23 +48,23 @@ namespace ProjectManager.Test
         [TestMethod]
         public void TestInsertUser_Success()
         {
-            var context = new MockProjectManagerEntities();
+            var context = new Test_Project_ManagerContext();
             var user = new Models.User();
             user.FirstName = "ankita";
             user.LastName = "ghosh";
             user.EmployeeId = "123456";
             user.UserId = 123;
             var controller = new UserController(new BC.UserBC(context));
-            var result = controller.InsertUserDetails(user) as JSendResponse;
+            var result = controller.AddUserDetails(user) as JSendResponse;
 
             Assert.IsNotNull(result);
-            Assert.AreEqual(result.Data, 1);
+            Assert.AreEqual(result.Data, 0);
         }
 
         [TestMethod]
         public void TestUpdateUser_Success()
         {
-            var context = new MockProjectManagerEntities();
+            var context = new Test_Project_ManagerContext();
             var users = new TestDbSet<DAC.User>();
 
             users.Add(new DAC.User()
@@ -134,7 +94,7 @@ namespace ProjectManager.Test
         [TestMethod]
         public void TestDeleteUser_Success()
         {
-            var context = new MockProjectManagerEntities();
+            var context = new Test_Project_ManagerContext();
             var users = new TestDbSet<DAC.User>();
             users.Add(new DAC.User()
             {
@@ -173,7 +133,7 @@ namespace ProjectManager.Test
         [ExpectedException(typeof(ArgumentNullException))]
         public void TestDeleteUser_UserNullException()
         {
-            var context = new MockProjectManagerEntities();
+            var context = new Test_Project_ManagerContext();
             var users = new TestDbSet<DAC.User>();
             users.Add(new DAC.User()
             {
@@ -206,7 +166,7 @@ namespace ProjectManager.Test
         [ExpectedException(typeof(FormatException))]
         public void TestDeleteUser_InvalidEmployeeId()
         {
-            var context = new MockProjectManagerEntities();
+            var context = new Test_Project_ManagerContext();
             var users = new TestDbSet<DAC.User>();
             users.Add(new DAC.User()
             {
@@ -239,7 +199,7 @@ namespace ProjectManager.Test
         [ExpectedException(typeof(ArithmeticException))]
         public void TestDeleteUser_NegativeEmployeeId()
         {
-            var context = new MockProjectManagerEntities();
+            var context = new Test_Project_ManagerContext();
             var users = new TestDbSet<DAC.User>();
             users.Add(new DAC.User()
             {
@@ -272,7 +232,7 @@ namespace ProjectManager.Test
         [ExpectedException(typeof(ArithmeticException))]
         public void TestDeleteUser_InvalidProjectIdFormat()
         {
-            var context = new MockProjectManagerEntities();
+            var context = new Test_Project_ManagerContext();
             var users = new TestDbSet<DAC.User>();
             users.Add(new DAC.User()
             {
@@ -305,7 +265,7 @@ namespace ProjectManager.Test
         [ExpectedException(typeof(ArithmeticException))]
         public void TestDeleteUser_NegativeUserIdFormat()
         {
-            var context = new MockProjectManagerEntities();
+            var context = new Test_Project_ManagerContext();
             var users = new TestDbSet<DAC.User>();
             users.Add(new DAC.User()
             {
@@ -338,7 +298,7 @@ namespace ProjectManager.Test
         [ExpectedException(typeof(ArgumentNullException))]
         public void TestUpdateUser_UserNullException()
         {
-            var context = new MockProjectManagerEntities();
+            var context = new Test_Project_ManagerContext();
             var users = new TestDbSet<DAC.User>();
             users.Add(new DAC.User()
             {
@@ -371,7 +331,7 @@ namespace ProjectManager.Test
         [ExpectedException(typeof(FormatException))]
         public void TestUpdateUser_InvalidEmployeeId()
         {
-            var context = new MockProjectManagerEntities();
+            var context = new Test_Project_ManagerContext();
             var users = new TestDbSet<DAC.User>();
             users.Add(new DAC.User()
             {
@@ -404,7 +364,7 @@ namespace ProjectManager.Test
         [ExpectedException(typeof(ArithmeticException))]
         public void TestUpdateUser_NegativeEmployeeId()
         {
-            var context = new MockProjectManagerEntities();
+            var context = new Test_Project_ManagerContext();
             var users = new TestDbSet<DAC.User>();
             users.Add(new DAC.User()
             {
@@ -437,7 +397,7 @@ namespace ProjectManager.Test
         [ExpectedException(typeof(ArithmeticException))]
         public void TestUpdateUser_InvalidProjectIdFormat()
         {
-            var context = new MockProjectManagerEntities();
+            var context = new Test_Project_ManagerContext();
             var users = new TestDbSet<DAC.User>();
             users.Add(new DAC.User()
             {
@@ -470,7 +430,7 @@ namespace ProjectManager.Test
         [ExpectedException(typeof(ArithmeticException))]
         public void TestUpdateUser_NegativeUserIdFormat()
         {
-            var context = new MockProjectManagerEntities();
+            var context = new Test_Project_ManagerContext();
             var users = new TestDbSet<DAC.User>();
             users.Add(new DAC.User()
             {
@@ -503,7 +463,7 @@ namespace ProjectManager.Test
         [ExpectedException(typeof(ArgumentNullException))]
         public void TestInsertUser_UserNullException()
         {
-            var context = new MockProjectManagerEntities();
+            var context = new Test_Project_ManagerContext();
             var users = new TestDbSet<DAC.User>();
             users.Add(new DAC.User()
             {
@@ -529,14 +489,14 @@ namespace ProjectManager.Test
             user = null;
 
             var controller = new UserController(new BC.UserBC(context));
-            var result = controller.InsertUserDetails(user) as JSendResponse;
+            var result = controller.AddUserDetails(user) as JSendResponse;
         }
 
         [TestMethod]
         [ExpectedException(typeof(FormatException))]
         public void TestInsertUser_InvalidEmployeeId()
         {
-            var context = new MockProjectManagerEntities();
+            var context = new Test_Project_ManagerContext();
             var users = new TestDbSet<DAC.User>();
             users.Add(new DAC.User()
             {
@@ -562,14 +522,14 @@ namespace ProjectManager.Test
             user.EmployeeId = "TEST";
 
             var controller = new UserController(new BC.UserBC(context));
-            var result = controller.InsertUserDetails(user) as JSendResponse;
+            var result = controller.AddUserDetails(user) as JSendResponse;
         }
 
         [TestMethod]
         [ExpectedException(typeof(ArithmeticException))]
         public void TestInsertUser_NegativeEmployeeId()
         {
-            var context = new MockProjectManagerEntities();
+            var context = new Test_Project_ManagerContext();
             var users = new TestDbSet<DAC.User>();
             users.Add(new DAC.User()
             {
@@ -595,14 +555,14 @@ namespace ProjectManager.Test
             user.EmployeeId = "-233";
 
             var controller = new UserController(new BC.UserBC(context));
-            var result = controller.InsertUserDetails(user) as JSendResponse;
+            var result = controller.AddUserDetails(user) as JSendResponse;
         }
 
         [TestMethod]
         [ExpectedException(typeof(ArithmeticException))]
         public void TestInsertUser_InvalidProjectIdFormat()
         {
-            var context = new MockProjectManagerEntities();
+            var context = new Test_Project_ManagerContext();
             var users = new TestDbSet<DAC.User>();
             users.Add(new DAC.User()
             {
@@ -628,7 +588,7 @@ namespace ProjectManager.Test
             user.ProjectId = -1;
 
             var controller = new UserController(new BC.UserBC(context));
-            var result = controller.InsertUserDetails(user) as JSendResponse;
+            var result = controller.AddUserDetails(user) as JSendResponse;
         }
 
     }
