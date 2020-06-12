@@ -24,3 +24,17 @@ C:\Users\Riddhi\Desktop\Project Manager Riddhi\FSE_SBA_Final_353587\ProjectManag
 C:\Users\Riddhi\Desktop\Project Manager Riddhi\FSE_SBA_Final_353587\ProjectManager-ServerSideCode\ProjectManagerBC\obj\Debug\ProjectManagerBC.csproj.CopyComplete
 C:\Users\Riddhi\Desktop\Project Manager Riddhi\FSE_SBA_Final_353587\ProjectManager-ServerSideCode\ProjectManagerBC\obj\Debug\ProjectManagerBC.dll
 C:\Users\Riddhi\Desktop\Project Manager Riddhi\FSE_SBA_Final_353587\ProjectManager-ServerSideCode\ProjectManagerBC\obj\Debug\ProjectManagerBC.pdb
+D:\FSE_SBA_353587\FSE_SBA_Final_353587\ProjectManager-ServerSideCode\ProjectManagerBC\bin\Debug\ProjectManagerBC.dll
+D:\FSE_SBA_353587\FSE_SBA_Final_353587\ProjectManager-ServerSideCode\ProjectManagerBC\bin\Debug\ProjectManagerBC.pdb
+D:\FSE_SBA_353587\FSE_SBA_Final_353587\ProjectManager-ServerSideCode\ProjectManagerBC\bin\Debug\ProjectManager.DAC.dll
+D:\FSE_SBA_353587\FSE_SBA_Final_353587\ProjectManager-ServerSideCode\ProjectManagerBC\bin\Debug\ProjectManager.Models.dll
+D:\FSE_SBA_353587\FSE_SBA_Final_353587\ProjectManager-ServerSideCode\ProjectManagerBC\bin\Debug\EntityFramework.dll
+D:\FSE_SBA_353587\FSE_SBA_Final_353587\ProjectManager-ServerSideCode\ProjectManagerBC\bin\Debug\ProjectManager.DAC.pdb
+D:\FSE_SBA_353587\FSE_SBA_Final_353587\ProjectManager-ServerSideCode\ProjectManagerBC\bin\Debug\ProjectManager.Models.pdb
+D:\FSE_SBA_353587\FSE_SBA_Final_353587\ProjectManager-ServerSideCode\ProjectManagerBC\bin\Debug\EntityFramework.xml
+D:\FSE_SBA_353587\FSE_SBA_Final_353587\ProjectManager-ServerSideCode\ProjectManagerBC\obj\Debug\ProjectManagerBC.csproj.CoreCompileInputs.cache
+D:\FSE_SBA_353587\FSE_SBA_Final_353587\ProjectManager-ServerSideCode\ProjectManagerBC\obj\Debug\ProjectManagerBC.csproj.CopyComplete
+D:\FSE_SBA_353587\FSE_SBA_Final_353587\ProjectManager-ServerSideCode\ProjectManagerBC\obj\Debug\ProjectManagerBC.dll
+D:\FSE_SBA_353587\FSE_SBA_Final_353587\ProjectManager-ServerSideCode\ProjectManagerBC\obj\Debug\ProjectManagerBC.pdb
+D:\FSE_SBA_353587\FSE_SBA_Final_353587\ProjectManager-ServerSideCode\ProjectManagerBC\bin\Debug\ProjectManager.DAC.dll.config
+D:\FSE_SBA_353587\FSE_SBA_Final_353587\ProjectManager-ServerSideCode\ProjectManagerBC\obj\Debug\ProjectManagerBC.csprojAssemblyReference.cache

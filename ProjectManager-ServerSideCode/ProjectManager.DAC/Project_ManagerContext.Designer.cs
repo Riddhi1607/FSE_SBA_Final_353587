@@ -1,4 +1,4 @@
-﻿// T4 code generation is enabled for model 'C:\Users\Riddhi\Desktop\Project Manager Riddhi\FSE_SBA_353587\ProjectManager-ServerSideCode\ProjectManager.DAC\ProjectManager.edmx'. 
+﻿// T4 code generation is enabled for model 'D:\FSE_SBA_353587\FSE_SBA_Final_353587\ProjectManager-ServerSideCode\ProjectManager.DAC\Project_ManagerContext.edmx'. 
 // To enable legacy code generation, change the value of the 'Code Generation Strategy' designer
 // property to 'Legacy ObjectContext'. This property is available in the Properties Window when the model
 // is open in the designer.

@@ -24,3 +24,17 @@ C:\Users\Riddhi\Desktop\Project Manager Riddhi\FSE_SBA_Final_353587\ProjectManag
 C:\Users\Riddhi\Desktop\Project Manager Riddhi\FSE_SBA_Final_353587\ProjectManager-ServerSideCode\ProjectManager.DAC\obj\Debug\ProjectManager.DAC.csproj.CopyComplete
 C:\Users\Riddhi\Desktop\Project Manager Riddhi\FSE_SBA_Final_353587\ProjectManager-ServerSideCode\ProjectManager.DAC\obj\Debug\ProjectManager.DAC.dll
 C:\Users\Riddhi\Desktop\Project Manager Riddhi\FSE_SBA_Final_353587\ProjectManager-ServerSideCode\ProjectManager.DAC\obj\Debug\ProjectManager.DAC.pdb
+D:\FSE_SBA_353587\FSE_SBA_Final_353587\ProjectManager-ServerSideCode\ProjectManager.DAC\obj\Debug\ProjectManager.DAC.csprojAssemblyReference.cache
+D:\FSE_SBA_353587\FSE_SBA_Final_353587\ProjectManager-ServerSideCode\ProjectManager.DAC\obj\Debug\ProjectManager.DAC.csproj.CoreCompileInputs.cache
+D:\FSE_SBA_353587\FSE_SBA_Final_353587\ProjectManager-ServerSideCode\ProjectManager.DAC\bin\Debug\ProjectManager.DAC.dll.config
+D:\FSE_SBA_353587\FSE_SBA_Final_353587\ProjectManager-ServerSideCode\ProjectManager.DAC\bin\Debug\ProjectManager.DAC.dll
+D:\FSE_SBA_353587\FSE_SBA_Final_353587\ProjectManager-ServerSideCode\ProjectManager.DAC\bin\Debug\ProjectManager.DAC.pdb
+D:\FSE_SBA_353587\FSE_SBA_Final_353587\ProjectManager-ServerSideCode\ProjectManager.DAC\bin\Debug\EntityFramework.dll
+D:\FSE_SBA_353587\FSE_SBA_Final_353587\ProjectManager-ServerSideCode\ProjectManager.DAC\bin\Debug\EntityFramework.SqlServer.dll
+D:\FSE_SBA_353587\FSE_SBA_Final_353587\ProjectManager-ServerSideCode\ProjectManager.DAC\bin\Debug\ProjectManager.Models.dll
+D:\FSE_SBA_353587\FSE_SBA_Final_353587\ProjectManager-ServerSideCode\ProjectManager.DAC\bin\Debug\ProjectManager.Models.pdb
+D:\FSE_SBA_353587\FSE_SBA_Final_353587\ProjectManager-ServerSideCode\ProjectManager.DAC\bin\Debug\EntityFramework.xml
+D:\FSE_SBA_353587\FSE_SBA_Final_353587\ProjectManager-ServerSideCode\ProjectManager.DAC\bin\Debug\EntityFramework.SqlServer.xml
+D:\FSE_SBA_353587\FSE_SBA_Final_353587\ProjectManager-ServerSideCode\ProjectManager.DAC\obj\Debug\ProjectManager.DAC.csproj.CopyComplete
+D:\FSE_SBA_353587\FSE_SBA_Final_353587\ProjectManager-ServerSideCode\ProjectManager.DAC\obj\Debug\ProjectManager.DAC.dll
+D:\FSE_SBA_353587\FSE_SBA_Final_353587\ProjectManager-ServerSideCode\ProjectManager.DAC\obj\Debug\ProjectManager.DAC.pdb
