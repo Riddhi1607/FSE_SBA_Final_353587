@@ -22,7 +22,7 @@ export class BaseService {
 
 
     public baseurl(): string {
-        return 'http://localhost:50830/';
+        return 'http://localhost:8001/';
     }
 
     protected handleError(error: any) {
