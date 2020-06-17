@@ -83,13 +83,24 @@ namespace ProjectManager.DAC
                 }
 
 
-                var editDetails = (from editUser in _projectManagerCtx.Users
-                                   where editUser.User_ID.ToString().Contains(project.User.UserId.ToString())
-                                   select editUser).First();
-                // Modify existing records
-                if (editDetails != null)
+                var userDetailsOld = (from editUser in _projectManagerCtx.Users
+                                      where editUser.Project_ID.ToString().Contains(project.ProjectId.ToString())
+                                      select editUser).First();
+
+
+                var userDetailsNew = (from editUser in _projectManagerCtx.Users
+                                      where editUser.User_ID.ToString().Contains(project.User.UserId.ToString())
+                                      select editUser).First();
+
+                if (userDetailsOld.User_ID != userDetailsNew.User_ID)
                 {
-                    editDetails.Project_ID = project.ProjectId;
+                    // Modify existing records
+                    if (userDetailsNew != null)
+                    {
+                        userDetailsNew.Project_ID = project.ProjectId;
+                        userDetailsOld.Project_ID = null;
+                    }
+                    
                 }
                 return _projectManagerCtx.SaveChanges();
             }

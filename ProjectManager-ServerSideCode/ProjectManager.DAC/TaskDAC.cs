@@ -11,11 +11,11 @@ namespace ProjectManager.DAC
     {
         private IProject_ManagerContext _projectManagerCtx;
 
-        public TaskDAC() 
+        public TaskDAC()
         {
             _projectManagerCtx = new Project_ManagerContext();
         }
-        public TaskDAC(IProject_ManagerContext context) 
+        public TaskDAC(IProject_ManagerContext context)
         {
             _projectManagerCtx = context;
         }
@@ -114,14 +114,23 @@ namespace ProjectManager.DAC
                     editDetails.Priority = task.Priority;
 
                 }
-                var editDetailsUser = (from editUser in _projectManagerCtx.Users
-                                       where editUser.User_ID.ToString().Contains(task.User.UserId.ToString())
-                                       select editUser).First();
-                // Modify existing records
-                if (editDetailsUser != null)
+                var editDetailsUserNew = (from editUser in _projectManagerCtx.Users
+                                          where editUser.User_ID.ToString().Contains(task.User.UserId.ToString())
+                                          select editUser).First();
+
+                var editDetailsUserOld = (from editUser in _projectManagerCtx.Users
+                                          where editUser.Task_ID.ToString().Contains(task.TaskId.ToString())
+                                          select editUser).First();
+                if (editDetailsUserNew.User_ID != editDetailsUserOld.User_ID)
                 {
-                    editDetails.Task_ID = task.TaskId;
+                    if (editDetailsUserNew != null)
+                    {
+                        editDetailsUserNew.Task_ID = task.TaskId;
+                        editDetailsUserOld.Task_ID = null;
+                    }
                 }
+                // Modify existing records
+
                 return _projectManagerCtx.SaveChanges();
             }
 
