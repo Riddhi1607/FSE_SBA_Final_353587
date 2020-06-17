@@ -71,7 +71,7 @@ export class ViewTaskComponent implements OnInit {
   }
 
   editTask(task) {
-    this.router.navigate(['/addTask', { task: JSON.stringify(task) }]);
+    this.router.navigate(['/addtask', { task: JSON.stringify(task) }]);
   }
 
   deleteTask(task) {
